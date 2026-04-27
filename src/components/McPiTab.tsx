@@ -3,6 +3,7 @@ import { simulateMcPi } from "../sim/monteCarloPi";
 import type { McPiResult } from "../sim/monteCarloPi";
 import { PiPlot } from "./PiPlot";
 import { McPiDescription } from "./McPiDescription";
+import { McPi } from "../rshiny/labels";
 
 type SubTab = "description" | "simulation";
 
@@ -59,11 +60,10 @@ export function McPiTab() {
       {subTab === "simulation" && (
         <div className="simulation-panel">
           <div className="controls app-controls-bar">
-            <div
-              className="field field-slider"
-              title="Sample size inside the unit square; more points usually tighten the π estimate."
-            >
-              <label htmlFor="mc-pi-n">n (darts / MC sample size): {n}</label>
+            <div className="field field-slider" title={McPi.n.title}>
+              <label htmlFor="mc-pi-n">
+                {McPi.n.label} {n}
+              </label>
               <input
                 id="mc-pi-n"
                 type="range"
@@ -72,10 +72,11 @@ export function McPiTab() {
                 step={50}
                 value={n}
                 onChange={(e) => setN(snapN(Number(e.target.value)))}
+                aria-label={McPi.n.label}
               />
             </div>
-            <label className="field" title="Fixes the uniform dart positions before you click Go; same seed reproduces the same cloud.">
-              <span>RNG seed</span>
+            <label className="field" title={McPi.seed.title}>
+              <span>{McPi.seed.label}</span>
               <input
                 type="number"
                 min={1}
@@ -83,15 +84,11 @@ export function McPiTab() {
                 step={1}
                 value={seed}
                 onChange={(e) => setSeed(Math.min(999_999, Math.max(1, Math.floor(Number(e.target.value)) || 1)))}
+                aria-label={McPi.seed.label}
               />
             </label>
             <div className="app-controls-go-wrap">
-              <button
-                type="button"
-                className="btn-go"
-                onClick={onGo}
-                title="Throw all darts once, count inside the inscribed circle, and refresh the plot and numbers."
-              >
+              <button type="button" className="btn-go" onClick={onGo} title={McPi.go}>
                 Go
               </button>
             </div>
@@ -99,16 +96,16 @@ export function McPiTab() {
 
           {metrics ? (
             <div className="metrics mc-pi-metrics-row">
-              <div title="Count of points inside the circle centered at (0.5, 0.5) with radius 0.5 (inscribed in the unit square).">
+              <div title={McPi.metricIn}>
                 <strong>Number in circle:</strong> {metrics.inC}
               </div>
-              <div title="Count of points in the square but not inside that inscribed circle.">
+              <div title={McPi.metricOut}>
                 <strong>Number outside circle:</strong> {metrics.outC}
               </div>
-              <div title="Monte Carlo estimate 4 × (inside count) / n as an approximation of π.">
-                <strong>π estimate:</strong> {metrics.est.toFixed(4)}
+              <div title={McPi.metricEst}>
+                <strong>Pi estimate:</strong> {metrics.est.toFixed(4)}
               </div>
-              <div title="Percent absolute error of the estimate versus true π.">
+              <div title={McPi.metricRel}>
                 <strong>Relative difference vs π (%):</strong> {metrics.rel.toFixed(4)}
               </div>
             </div>
@@ -118,7 +115,7 @@ export function McPiTab() {
 
           <div
             className="pi-plot-wrap"
-            title="Scatter in the unit square: inscribed circle (same hit rule as the formulas above)."
+            title={McPi.plotWrap}
           >
             <PiPlot result={result} />
           </div>

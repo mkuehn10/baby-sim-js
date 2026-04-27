@@ -36,7 +36,7 @@ export function McPiDescription({ onGoToSimulation, active = true }: Props) {
 
   return (
     <div ref={rootRef} className="mc-pi-method-summary">
-      <h3 className="method-h3">Making some π (Monte Carlo)</h3>
+      <h4 className="method-h4 h5 text-body mb-2">Making some π (Monte Carlo)</h4>
       <p className="lesson-ref text-muted">
         <span className="lesson-ref-code">M3L4</span>
         {" — "}

@@ -33,8 +33,8 @@ export function Gen3dDescription({ onGoToSimulation, active = true }: Props) {
 
   return (
     <div ref={rootRef} className="tab-method-summary mc-pi-method-summary">
-      <h3 className="method-h3">PRNs and the 3D lattice picture</h3>
-      <p className="lesson-ref text-muted">
+      <h4 className="method-h4 h5 text-body mb-2">PRNs and the 3D lattice picture</h4>
+      <p className="lesson-ref text-muted mb-2">
         <span className="lesson-ref-code">M3L8</span>
         {" — "}
         Simulating Random Variables
@@ -71,11 +71,13 @@ export function Gen3dDescription({ onGoToSimulation, active = true }: Props) {
         <span dangerouslySetInnerHTML={{ __html: "\\([0,1]^3\\)" }} />.
       </p>
 
-      <p className="mb-0 text-muted app-description-footer small">
-        <strong>Simulation</strong> sub-tab: pick generator, <span dangerouslySetInnerHTML={{ __html: "\\(n\\)" }} />,
-        and seed; <strong>Go</strong>, then rotate the plotly view to compare RANDU sheet structure with the good LCG
-        fill. For RANDU, try seeds like 512 or 2048 if the cloud looks too uniform.
-      </p>
+      <p
+        className="mb-0 text-muted app-description-footer"
+        dangerouslySetInnerHTML={{
+          __html:
+            "<strong>Simulation</strong> sub-tab: pick generator, \\(n\\), and seed; <strong>Go</strong>, then rotate the plotly view to compare RANDU sheet structure with the good LCG fill.",
+        }}
+      />
 
       <div className="mt-2">
         <button type="button" className="link-like" onClick={onGoToSimulation}>

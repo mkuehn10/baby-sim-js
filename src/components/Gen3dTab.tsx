@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { simulateGen3d, type Gen3dMode, type Gen3dResult } from "../sim/threedGen";
 import { Gen3dPlot } from "./Gen3dPlot";
 import { Gen3dDescription } from "./Gen3dDescription";
+import { Gen3d } from "../rshiny/labels";
 
 type SubTab = "description" | "simulation";
 
@@ -51,11 +52,10 @@ export function Gen3dTab() {
       {subTab === "simulation" && (
         <div className="simulation-panel">
           <div className="controls app-controls-bar gen3d-controls">
-            <div
-              className="field field-slider"
-              title="LCG chain length n; the plot uses overlapping (x, y, z) triples from successive scaled uniforms."
-            >
-              <label htmlFor="gen3d-n">n (3D points): {nChain}</label>
+            <div className="field field-slider" title={Gen3d.n.title}>
+              <label htmlFor="gen3d-n">
+                {Gen3d.n.label} {nChain}
+              </label>
               <input
                 id="gen3d-n"
                 type="range"
@@ -64,23 +64,23 @@ export function Gen3dTab() {
                 step={50}
                 value={nChain}
                 onChange={(e) => setNChain(snapPoints(Number(e.target.value)))}
+                aria-label={Gen3d.n.label}
               />
             </div>
-            <label className="field" title="Starting state x₀ for the chosen LCG.">
-              <span>x₀ (LCG seed / state)</span>
+            <label className="field" title={Gen3d.seed.title}>
+              <span>{Gen3d.seed.label}</span>
               <input
                 type="number"
                 min={1}
                 max={SEED_MAX}
                 step={1}
                 value={seed}
-                onChange={(e) =>
-                  setSeed(Math.min(SEED_MAX, Math.max(1, Math.floor(Number(e.target.value)) || 1)))
-                }
+                onChange={(e) => setSeed(Math.min(SEED_MAX, Math.max(1, Math.floor(Number(e.target.value)) || 1)))}
+                aria-label={Gen3d.seed.label}
               />
             </label>
-            <fieldset className="field field-radio" title="Compare a well-chosen LCG triple against the classic RANDU lattice.">
-              <legend>LCG choice (a, m)</legend>
+            <fieldset className="field field-radio" title={Gen3d.radio.title}>
+              <legend>{Gen3d.radio.legend}</legend>
               <label className="radio-row">
                 <input type="radio" name="gen3d-mode" checked={mode === "good"} onChange={() => setMode("good")} />
                 Good
@@ -91,12 +91,7 @@ export function Gen3dTab() {
               </label>
             </fieldset>
             <div className="app-controls-go-wrap">
-              <button
-                type="button"
-                className="btn-go"
-                onClick={onGo}
-                title="Regenerate 3D points and refresh the interactive plot."
-              >
+              <button type="button" className="btn-go" onClick={onGo} title={Gen3d.go}>
                 Go
               </button>
             </div>
@@ -106,12 +101,11 @@ export function Gen3dTab() {
             <p className="muted small">Click Go to plot the point cloud (rotate and zoom in the chart).</p>
           ) : (
             <p className="muted small">
-              Showing <strong>{result.x.length}</strong> triples from chain length {nChain} ({result.mode},{" "}
-              <strong>{result.title}</strong>).
+              Showing <strong>{result.x.length}</strong> triples from chain length {nChain} ({result.mode}, <strong>{result.title}</strong>).
             </p>
           )}
 
-          <div className="pi-plot-wrap gen3d-plot-wrap" title="Interactive 3D scatter in the unit cube.">
+          <div className="pi-plot-wrap gen3d-plot-wrap" title={Gen3d.plotPlotly}>
             <Gen3dPlot result={result} />
           </div>
         </div>

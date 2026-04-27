@@ -26,10 +26,6 @@ export function Gen3dTab() {
   return (
     <section className="card gen3d-tab">
       <h2 className="h2">3D Visualization</h2>
-      <p className="muted small">
-        LCG logic matches <code>R/threed_gen.R</code> (sequence length <code>n</code>, triples from overlapping uniforms
-        scaled by <code>2^31</code>).
-      </p>
 
       <nav className="nav-pills" aria-label="3D visualization sections">
         <button
@@ -57,7 +53,7 @@ export function Gen3dTab() {
           <div className="controls app-controls-bar gen3d-controls">
             <div
               className="field field-slider"
-              title="How many triples (x,y,z) to plot in 3D — same control as Shiny gen3d_n_points (LCG chain length n; triples from overlapping scaled uniforms)."
+              title="LCG chain length n; the plot uses overlapping (x, y, z) triples from successive scaled uniforms."
             >
               <label htmlFor="gen3d-n">n (3D points): {nChain}</label>
               <input
@@ -70,7 +66,7 @@ export function Gen3dTab() {
                 onChange={(e) => setNChain(snapPoints(Number(e.target.value)))}
               />
             </div>
-            <label className="field" title="Starting state x₀ for the chosen LCG (same as Shiny threed_seed).">
+            <label className="field" title="Starting state x₀ for the chosen LCG.">
               <span>x₀ (LCG seed / state)</span>
               <input
                 type="number"

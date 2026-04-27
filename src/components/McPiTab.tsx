@@ -34,10 +34,6 @@ export function McPiTab() {
   return (
     <section className="card mc-pi-tab">
       <h2 className="h2">π Estimation</h2>
-      <p className="muted small">
-        Geometry matches <code>R/monte-carlo-sim-pi.R</code>. RNG is Mulberry32 — dart clouds differ from R’s{" "}
-        <code>runif</code> for the same seed.
-      </p>
 
       <nav className="nav-pills" aria-label="π estimation sections">
         <button

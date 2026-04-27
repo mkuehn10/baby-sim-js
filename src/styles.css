@@ -24,28 +24,33 @@ body {
 }
 
 .app-banner {
-  padding: 1rem 1.25rem;
-  border-bottom: 2px solid var(--gt-tech-gold);
+  padding: 0.45rem clamp(1rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--gt-tech-gold);
   background: var(--gt-white);
 }
 
 .app-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.35rem;
+  margin: 0;
+  font-size: clamp(1rem, 1.1rem + 0.2vw, 1.2rem);
   font-weight: 700;
   color: var(--gt-navy);
-}
-
-.app-sub {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--gt-gray);
+  letter-spacing: 0.01em;
 }
 
 .app-main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem 1.25rem 2rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0.75rem clamp(0.75rem, 2vw, 2rem) 2rem;
+}
+
+.app-main-tabs {
+  margin-bottom: 1rem;
+}
+
+.app-main-tabs .nav-pill {
+  font-size: 0.95rem;
+  padding: 0.45rem 1rem;
 }
 
 .card {
@@ -133,4 +138,179 @@ body {
   overflow: hidden;
   border: 1px solid var(--gt-tech-gold);
   background: var(--gt-white);
+}
+
+/* π tab: sub-navigation (Description / Simulation) */
+.nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.nav-pill {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gt-navy);
+  background: var(--gt-white);
+  border: 1px solid var(--gt-pi-mile);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.nav-pill:hover {
+  border-color: var(--gt-tech-gold);
+}
+
+.nav-pill.active {
+  background: var(--gt-navy);
+  color: var(--gt-white);
+  border-color: var(--gt-navy);
+}
+
+.mc-pi-tab .small {
+  font-size: 0.85rem;
+}
+
+.app-controls-bar {
+  align-items: flex-end;
+}
+
+.app-controls-go-wrap {
+  display: flex;
+  align-items: flex-end;
+}
+
+.field-slider {
+  flex: 1 1 220px;
+  min-width: 180px;
+}
+
+.field-slider input[type="range"] {
+  width: 100%;
+  min-width: 0;
+  margin-top: 0.25rem;
+  accent-color: var(--gt-bold-blue);
+}
+
+.simulation-panel {
+  margin-top: 0.25rem;
+}
+
+/* Method summary (matches Shiny `mc-pi-method-summary` feel) */
+.mc-pi-method-summary {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--gt-navy);
+}
+
+.mc-pi-method-summary .method-h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.mc-pi-method-summary .lesson-ref {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+}
+
+.lesson-ref-code {
+  display: inline-block;
+  padding: 0.08rem 0.35rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--gt-white);
+  background: var(--gt-navy);
+  border-radius: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.85rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.text-muted {
+  color: var(--gt-gray);
+}
+
+.app-description-footer {
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.link-like {
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--gt-bold-blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link-like:hover {
+  color: var(--gt-navy);
+}
+
+.mc-pi-metrics-row strong {
+  font-weight: 700;
+  color: var(--gt-navy);
+}
+
+/* 3D tab: radio fieldset */
+.field-radio {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 8rem;
+}
+
+.field-radio legend {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gt-navy);
+  margin-bottom: 0.25rem;
+}
+
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gt-navy);
+  cursor: pointer;
+  margin-bottom: 0.15rem;
+}
+
+.radio-row input {
+  margin: 0;
+  accent-color: var(--gt-bold-blue);
+}
+
+.gen3d-controls {
+  align-items: flex-end;
+}
+
+.gen3d-plot-placeholder,
+.gen3d-plot-root {
+  min-height: 85vh;
 }
